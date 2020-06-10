@@ -1,8 +1,2 @@
-const todos = [
-    // {
-    //     id: 1,
-    //     title: 'todo api',
-    //     discription: 'xd',
-    // }
-]
+const todos = []
 module.exports = todos
