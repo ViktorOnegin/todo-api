@@ -1,5 +1,4 @@
 const express = require('express')
-const db = require('../db/db')
 const todoController = require('../todoController/todos')
 
 const router = express.Router()
