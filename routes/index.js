@@ -3,10 +3,10 @@ const todoController = require('../todoController/todos')
 
 const router = express.Router()
 
-router.get('/api/todos', todoController.getTodos)
-router.get('/api/todos/:id', todoController.getSingleTodo)
-router.post('/api/todos', todoController.createTodo)
-router.put('/api/todos/:id', todoController.updateTodo)
-router.delete('/api/todos/:id', todoController.deleteTodo)
+router.get('/todos/getAll', todoController.getTodos)
+router.get('/todos/getByID/:id', todoController.getSingleTodo)
+router.post('/todos/create', todoController.createTodo)
+router.put('/todos/update/:id', todoController.updateTodo)
+router.delete('/todos/delete/:id', todoController.deleteTodo)
 
 module.exports = router

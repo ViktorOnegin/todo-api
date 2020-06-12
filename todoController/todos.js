@@ -11,8 +11,8 @@ class TodosController {
         todos: db,
       })
     }else{
-      res.status(200).send({
-        success: 'true',
+      res.status(400).send({
+        success: 'false',
         messege: 'array is empty',
       })
     }
@@ -25,6 +25,11 @@ class TodosController {
         return res.status(200).send({
           success: 'true',
           todo,
+        })
+      }else{
+        res.status(400).send({
+          success: 'false',
+          messege: `cant find todo with id ${id}`,
         })
       }
     })
