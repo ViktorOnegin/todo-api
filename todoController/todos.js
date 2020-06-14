@@ -7,13 +7,13 @@ class TodosController {
     if(db.length > 0){
       res.status(200).send({
         success: 'true',
-        messege: `todos  in array (${db.length})`,
+        message: `Todos  in array (${db.length})`,
         todos: db,
       })
     }else{
       res.status(400).send({
         success: 'false',
-        messege: 'array is empty',
+        message: 'Array is empty',
       })
     }
   }
@@ -29,7 +29,7 @@ class TodosController {
       }else{
         res.status(400).send({
           success: 'false',
-          messege: `cant find todo with id ${id}`,
+          message: `Cant find todo with id ${id}`,
         })
       }
     })
@@ -39,12 +39,12 @@ class TodosController {
     if(!req.body.title){
       return res.status(400).send({
         success: 'false',
-        messege: 'title is required',
+        message: 'Title is required',
       })
     }else if(!req.body.description){
       return res.status(400).send({
         success: 'false',
-        messege: 'title is required',
+        message: 'Description is required',
       })
     }
 
@@ -52,13 +52,13 @@ class TodosController {
       id: db.length + 1,
       title: req.body.title,
       description: req.body.description,
-      Created: moment().format('LLL')
+      created: moment().format('LLL')
     }
     db.push(todo)
 
     return res.status(201).send({
       success: 'true',
-      messege: 'todo added successfully',
+      message: 'Todo added successfully',
     })
 
     // const todo = {
@@ -68,7 +68,7 @@ class TodosController {
     // models.Todo.create(todo).then((todo) => {
     //   return res.status(201).send({
     //     success: 'true',
-    //     messege: 'todo added successfully',
+    //     message: 'todo added successfully',
     //   })
     // })
   }
@@ -88,19 +88,19 @@ class TodosController {
     if (!todoFound) {
       return res.status(404).send({
         success: 'false',
-        message: 'todo not found',
+        message: 'Todo not found',
       });
     }
   
     if (!req.body.title) {
       return res.status(400).send({
         success: 'false',
-        message: 'title is required',
+        message: 'Title is required',
       })
     } else if (!req.body.description) {
       return res.status(400).send({
         success: 'false',
-        message: 'description is required',
+        message: 'Description is required',
       })
     }
   
@@ -115,7 +115,7 @@ class TodosController {
     
     return res.status(201).send({
       success: 'true',
-      message: 'todo updated successfully',
+      message: 'Todo updated successfully',
     })
   }
   
@@ -127,14 +127,14 @@ class TodosController {
         db.splice(index, 1)
         return res.status(200).send({
           success: 'true',
-          message: 'todo deleted successfully',
+          message: 'Todo deleted successfully',
         })
       } 
     })
 
     return res.status(404).send({
       success: 'false',
-      message: 'todo not found',
+      message: 'Todo not found',
     })
   }
 }

@@ -1,0 +1,148 @@
+---
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Todo api
+host: localhost:3000
+schemes:
+- http
+consumes:
+- multipart/form-data
+produces:
+- application/json
+paths:
+  /todos/getAll:
+    get:
+      description: Get all todos
+      parameters: []
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/TodoResponse'
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /todos/getByID/:id:
+    get:
+      description: Get todo by id.
+      parameters:
+      - name: id
+        in: path
+        description: replace :id with todo id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/TodoResponse'
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /todos/create:
+    post:
+      description: Create todo.
+      parameters:
+      - name: title
+        in: path
+        description: todo title.
+        required: true
+        type: string
+      - name: description
+        in: path
+        description: todo description.
+        required: true
+        type: string
+      responses:
+        "201":
+          description: Success
+          schema:
+            $ref: '#/definitions/CreateResponse'
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /todos/update/:id:
+    put:
+      description: Update existing todo.
+      parameters:
+      - name: id
+        in: path
+        description: replace :id with todo id
+        required: true
+        type: integer
+      responses:
+        "201":
+          description: Success
+          schema:
+            $ref: '#/definitions/DeleteResponse'
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /todos/delete/:id:
+    delete:
+      description: Delete todo.
+      parameters:
+      - name: id
+        in: path
+        description: replace :id with todo id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/DeleteResponse'
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+definitions:
+  TodoResponse:
+    type: object
+    required:
+    - description
+    - id
+    - title
+    properties:
+      id:
+        type: integer
+      title:
+        type: string
+      description:
+        type: string
+  CreateResponse:
+    type: object
+    required:
+    - message
+    - success
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+        description: Create message.
+  ErrorResponse:
+    required:
+    - message
+    - success
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+        description: Error message.
+  DeleteResponse:
+    required:
+    - message
+    - success
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+        description: Delete message.
